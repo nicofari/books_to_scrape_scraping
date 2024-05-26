@@ -1,13 +1,11 @@
+from .books_to_scrape_site_base_parser import BooksToScrapeSiteBaseParser
 from domain.book import Book
-from bs4 import BeautifulSoup
 from service.parse_exception import ParseException
 
-class BooksToScrapeSiteParser:
-    def __init__(self) -> None:
-        pass
+class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
         
-    def parse(self, content_as_string):
-        soup = BeautifulSoup(content_as_string, 'html.parser')
+    def parse(self):
+        soup = self.soup
 
         ret = []
 

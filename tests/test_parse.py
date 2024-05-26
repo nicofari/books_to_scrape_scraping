@@ -2,19 +2,19 @@ import unittest
 import os
 
 from domain.book import Book
-from service.books_to_scrape_site_parser import BooksToScrapeSiteParser
+from service.books_to_scrape_site_page_parser import BooksToScrapeSitePageParser
 
 class TestParse(unittest.TestCase):
     
     def test_parse(self):
-        target = BooksToScrapeSiteParser()
-
         curr_dir = os.path.dirname(os.path.abspath(__file__))
 
-        with open(os.path.join(curr_dir, 'example_page.html')) as file:
+        with open(os.path.join(curr_dir, 'books_page.html')) as file:
             file_content = file.read()
 
-        actual = target.parse(file_content)
+        target = BooksToScrapeSitePageParser(file_content)
+
+        actual = target.parse()
 
         self.assertIsInstance(actual, list)
         self.assertEqual(20, len(actual))
