@@ -2,12 +2,12 @@ import unittest
 import os
 
 from domain.book import Book
-from service.html_parser import HtmlParser
+from service.books_to_scrape_site_parser import BooksToScrapeSiteParser
 
 class TestParse(unittest.TestCase):
     
     def test_parse(self):
-        target = HtmlParser()
+        target = BooksToScrapeSiteParser()
 
         curr_dir = os.path.dirname(os.path.abspath(__file__))
 

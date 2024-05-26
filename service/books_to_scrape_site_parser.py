@@ -2,7 +2,7 @@ from domain.book import Book
 from bs4 import BeautifulSoup
 from service.parse_exception import ParseException
 
-class HtmlParser:
+class BooksToScrapeSiteParser:
     def __init__(self) -> None:
         pass
         
