@@ -2,17 +2,19 @@ from bs4 import BeautifulSoup
 from domain.book import Book
 from service.parse_exception import ParseException
 
+
 class BooksToScrapeSiteBaseParser:
 
     def __init__(self, content_as_string) -> None:
         self.soup = BeautifulSoup(content_as_string, 'html.parser')
 
-    def parse(self):
+    def parse(self, verbose):
         pass
+
 
 class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
 
-    def parse(self):
+    def parse(self, verbose):
         soup = self.soup
 
         ret = []
@@ -39,9 +41,13 @@ class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
 
             availability = p_availability[0].text.strip()
 
+            if verbose:
+                print(f'Got {title} {rating} {price} {availability}')
+
             ret.append(Book(title, rating, price, availability))
 
         return ret
+
 
 class BooksToScrapeSiteSingleParser(BooksToScrapeSiteBaseParser):
 

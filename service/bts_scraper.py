@@ -10,9 +10,10 @@ class BooksToScrapeScraper:
     ACCEPT_LANGUAGE = "en-US,en;q=0.6"
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 
-    def __init__(self, rate_limiter):
+    def __init__(self, rate_limiter, verbose):
         self.books = []
         self.rate_limiter = rate_limiter
+        self.verbose = verbose
 
     def scrape(self):
         custom_headers = {
@@ -35,7 +36,7 @@ class BooksToScrapeScraper:
                 if response.status_code != 200:
                     print(f'Got error response! statuscode = {response.status_code} response text: {response.text}')
                 else:
-                    self.books += BooksToScrapeSitePageParser(response.text).parse()
+                    self.books += BooksToScrapeSitePageParser(response.text).parse(self.verbose)
 
             self.rate_limiter.run()
 

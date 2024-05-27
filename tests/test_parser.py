@@ -14,7 +14,7 @@ class TestParse(unittest.TestCase):
 
         target = BooksToScrapeSitePageParser(file_content)
 
-        actual = target.parse()
+        actual = target.parse(False)
 
         self.assertIsInstance(actual, list)
         self.assertEqual(20, len(actual))

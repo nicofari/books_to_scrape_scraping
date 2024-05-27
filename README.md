@@ -25,12 +25,15 @@ docker run --name profai-scraping-test --rm -ti -v $(pwd):/app profai-scraping p
 
 ## Launch app locally
 
+The app entrypoint is in ```main.py``` script:
+
 ```
-docker run --name profai-scraping-run -ti --rm -v $(pwd):/app profai-scraping python /app/main.py
+docker run --name profai-scraping-run -ti --rm -v $(pwd):/app profai-scraping python /app/main.py 1 1 /app/export/books.csv
 ```
 
-## Configuration
+Script parameters are:
+- rate limiter: interval in seconds
+- verbose flag: [0|1] 1 means more detailed output
+- file_name: the file for scraped books to be export to
 
-In ```main.py``` it is possible to configure the rate limiter interval.
-Default is 1 second.
 
