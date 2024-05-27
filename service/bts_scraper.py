@@ -27,11 +27,16 @@ class BooksToScrapeScraper:
 
             print(f'Get page {page}')
 
-            response = requests.get(url, headers=custom_headers)
+            try:
+                response = requests.get(url, headers=custom_headers)
+            except Exception as ex:
+                print(f'Error occurred: {ex}')
+            else:
+                if response.status_code != 200:
+                    print(f'Got error response! statuscode = {response.status_code} response text: {response.text}')
+                else:
+                    self.books += BooksToScrapeSitePageParser(response.text).parse()
 
             self.rate_limiter.run()
-
-            # TODO: check status code, retry
-            self.books += BooksToScrapeSitePageParser(response.text).parse()
 
         print(f'Got {len(self.books)} books')
