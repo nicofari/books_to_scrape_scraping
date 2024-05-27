@@ -4,8 +4,9 @@ import os
 from domain.book import Book
 from service.bts_parser import BooksToScrapeSitePageParser
 
+
 class TestParse(unittest.TestCase):
-    
+
     def test_parse(self):
         curr_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -18,7 +19,7 @@ class TestParse(unittest.TestCase):
 
         self.assertIsInstance(actual, list)
         self.assertEqual(20, len(actual))
-        
+
         book_0 = actual[0]
         self.assertIsInstance(book_0, Book)
         self.assertEqual("Frankenstein", book_0.title)
@@ -32,4 +33,3 @@ class TestParse(unittest.TestCase):
         self.assertEqual("Five", book_17.rating)
         self.assertEqual("£16.97", book_17.price)
         self.assertEqual("In stock", book_17.availability)
-

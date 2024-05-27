@@ -15,7 +15,7 @@ class BooksToScrapeScraper:
         self.rate_limiter = rate_limiter
         self.verbose = verbose
 
-    def scrape(self):
+    def scrape(self, from_page, to_page):
         custom_headers = {
             "User-Agent": self.USER_AGENT,
             "Accept": self.ACCEPT,
@@ -23,13 +23,15 @@ class BooksToScrapeScraper:
             "Referer": self.REFERER
         }
 
-        for page in range(1, 3):
+        for page in range(from_page, to_page):
             url = self.URL_TEMPLATE.format(page)
 
             print(f'Get page {page}')
 
             try:
                 response = requests.get(url, headers=custom_headers)
+                response.encoding = 'UTF-8'
+
             except Exception as ex:
                 print(f'Error occurred: {ex}')
             else:
