@@ -22,14 +22,17 @@ class TestParse(unittest.TestCase):
 
         book_0 = actual[0]
         self.assertIsInstance(book_0, Book)
-        self.assertEqual("Frankenstein", book_0.title)
-        self.assertEqual("Two", book_0.rating)
-        self.assertEqual("£38.00", book_0.price)
+        self.assertEqual("A Light in the Attic", book_0.title)
+        self.assertEqual("Three", book_0.rating)
+        self.assertEqual("£51.77", book_0.price)
         self.assertEqual("In stock", book_0.availability)
 
         book_17 = actual[17]
         self.assertIsInstance(book_17, Book)
-        self.assertEqual("A Spy's Devotion (The Regency Spies of London #1)", book_17.title)
-        self.assertEqual("Five", book_17.rating)
-        self.assertEqual("£16.97", book_17.price)
+        self.assertEqual("Mesaerion: The Best Science Fiction Stories 1800-1849", book_17.title)
+        self.assertEqual("One", book_17.rating)
+        self.assertEqual("£37.59", book_17.price)
         self.assertEqual("In stock", book_17.availability)
+
+        book_7 = actual[7]
+        self.assertEqual("The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull", book_7.title)
