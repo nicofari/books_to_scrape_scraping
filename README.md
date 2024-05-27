@@ -28,3 +28,9 @@ docker run --name profai-scraping-test --rm -ti -v $(pwd):/app profai-scraping p
 ```
 docker run --name profai-scraping-run -ti --rm -v $(pwd):/app profai-scraping python /app/main.py
 ```
+
+## Configuration
+
+In ```main.py``` it is possible to configure the rate limiter interval.
+Default is 1 second.
+

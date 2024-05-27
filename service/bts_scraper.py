@@ -10,8 +10,9 @@ class BooksToScrapeScraper:
     ACCEPT_LANGUAGE = "en-US,en;q=0.6"
     USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 
-    def __init__(self):
+    def __init__(self, rate_limiter):
         self.books = []
+        self.rate_limiter = rate_limiter
 
     def scrape(self):
         custom_headers = {
@@ -28,7 +29,9 @@ class BooksToScrapeScraper:
 
             response = requests.get(url, headers=custom_headers)
 
-            # TODO: check status code, retry, ratelimit
+            self.rate_limiter.run()
+
+            # TODO: check status code, retry
             self.books += BooksToScrapeSitePageParser(response.text).parse()
 
         print(f'Got {len(self.books)} books')
