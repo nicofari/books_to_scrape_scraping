@@ -4,7 +4,9 @@
 
 ## Dependencies
 
+Two libraries are needed:
 - beautifulesoup4
+- requests
 
 ## Provisioning
 

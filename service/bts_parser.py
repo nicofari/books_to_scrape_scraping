@@ -1,9 +1,17 @@
-from .books_to_scrape_site_base_parser import BooksToScrapeSiteBaseParser
+from bs4 import BeautifulSoup
 from domain.book import Book
 from service.parse_exception import ParseException
 
+class BooksToScrapeSiteBaseParser:
+
+    def __init__(self, content_as_string) -> None:
+        self.soup = BeautifulSoup(content_as_string, 'html.parser')
+
+    def parse(self):
+        pass
+
 class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
-        
+
     def parse(self):
         soup = self.soup
 
@@ -19,7 +27,7 @@ class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
             if p_rating is None or p_rating[0]['class'][1] is None:
                 raise ParseException("Parse failed: unable to find book's rating")
             rating = p_rating[0]['class'][1]
-            
+
             p_price = article.select('p.price_color')
             if p_price is None or p_price[0] is None:
                 raise ParseException("Parse failed: unable to find book's price")
@@ -34,3 +42,8 @@ class BooksToScrapeSitePageParser(BooksToScrapeSiteBaseParser):
             ret.append(Book(title, rating, price, availability))
 
         return ret
+
+class BooksToScrapeSiteSingleParser(BooksToScrapeSiteBaseParser):
+
+    def parse():
+        pass

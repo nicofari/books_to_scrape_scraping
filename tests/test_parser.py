@@ -2,7 +2,7 @@ import unittest
 import os
 
 from domain.book import Book
-from service.books_to_scrape_site_page_parser import BooksToScrapeSitePageParser
+from service.bts_parser import BooksToScrapeSitePageParser
 
 class TestParse(unittest.TestCase):
     
